@@ -1,0 +1,27 @@
+﻿<style>
+    #dropdown-item:hover {
+        background-color: #34393E;
+    }
+</style>
+
+<div class="dropdown" id="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" style="background-color: #4f4f4f" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        Categorias
+    </a>
+    <ul class="dropdown-menu" style="background-color: #4f4f4f">
+        @foreach (var categoria in Model)
+        {
+            <li>
+                <a id="dropdown-item" class="dropdown-item text-light" asp-controller="Lanche" asp-action="List" style="color: black"
+               asp-route-categoria="@categoria.CategoriaNome">@categoria.CategoriaNome</a>
+            </li>
+        }
+
+        <li class="dropdown-divider"></li>
+
+        <li class="text-light">
+            <a id="dropdown-item" class="dropdown-item text-light" asp-controller="Lanche" asp-action="List" style="color: black"
+               asp-route-categoria="">Todos os lanches</a>
+        </li>
+    </ul>
+</div>

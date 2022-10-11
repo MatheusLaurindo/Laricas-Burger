@@ -1,0 +1,13 @@
+﻿@model HomeViewModel
+
+<partial name="_Carousel"/>
+
+<h2 class="ps-3" style="margin-top: 15px; color: white; text-shadow: 1px 1px 4px black">Lanches preferidos</h2>
+
+<div class="row ps-3">
+    @foreach(var lanche in Model.LanchesPreferidos)
+    {
+        <partial name="_LanchesResumo" for="@lanche"/>
+    }
+</div>
+
