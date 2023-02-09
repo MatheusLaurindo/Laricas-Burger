@@ -54,84 +54,20 @@
                             <button class="btn btn-danger me-3" type="submit">Procurar</button>
                         </div>
                     </form>
+                    <div class="d-flex">
+                        <i class="fa-solid fa-user text-light p-1 me-2"></i>
+                        <span class="me-4"><a asp-controller="Account" asp-action="Login" class="text-light text-decoration-none">Fazer Login</a></span>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container-xxl pb-5" id="fundo">
-        <main class="pb-5">
+        <main>
             @RenderBody()
         </main>
     </div>
-
-    <footer class="text-center text-lg-start bg-dark text-muted mt-5 mb-0">
-        <section id="footer-top" class="d-flex justify-content-center justify-content-lg-between p-4">
-            <div class="me-5 d-none d-lg-block">
-                <span>Se conecte conosco através de nossas mídias sociais:</span>
-            </div>
-            <div id="icons">
-            </div>
-        </section>
-        <section class="">
-            <div class="container text-center text-md-start">
-                <div class="row mt-3">
-                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            <i class="fas fa-gem me-3 text-secondary"></i>Larica's Burger
-                        </h6>
-                        <p>
-                            Os melhores lanches da cidade você encontra na Larica's Burger. Venha conhecer nosso estabelecimento com seus amigos e colecione
-                            memórias divertidades para sempre!
-                        </p>
-                    </div>
-                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Produtos
-                        </h6>
-                        <p>
-                            <a href="#!" class="text-reset">Hambúrgueres</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Sanduíches</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Bebidas</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Sobremesas</a>
-                        </p>
-                    </div>
-                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">
-                            Categorias
-                        </h6>
-                        <p>
-                            <a href="#!" class="text-reset">Lanches Naturais</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Lanches Normais</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Sobremesas</a>
-                        </p>
-                        <p>
-                            <a href="#!" class="text-reset">Sucos e Refrigerantes</a>
-                        </p>
-                    </div>
-                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <h6 class="text-uppercase fw-bold mb-4">Contato</h6>
-                        <p><i class="fas fa-home me-3 text-secondary"></i> Fortaleza, CE, Brasil</p>
-                        <p>
-                            <i class="fas fa-envelope me-3 text-secondary"></i>
-                            laricasburger@hotmail.com
-                        </p>
-                        <p><i class="fas fa-phone me-3 text-secondary"></i> + 55 0989-9874</p>
-                        <p><i class="fas fa-print me-3 text-secondary"></i> + 55 3322-5544</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
