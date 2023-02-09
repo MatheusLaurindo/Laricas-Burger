@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Larica's Burger</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/0d12080531.js" crossorigin="anonymous"></script>
+    <style>
+        #pesquisaInput {
+            background-color: #4f4f4f;
+            border: none;
+            border-radius: 4px;
+            outline: none;
+            caret-color: #F13B43;
+            color: white;
+            width: 18rem;
+        }
+
+        ::-webkit-input-placeholder {
+            color: #c2c2c2;
+        }
+
+        #fundo {
+            background:;
+            background-color: rgba(33, 37, 41, 0.6);
+            height: 100%;
+        }
+
+        #footer-top {
+            border-bottom: 2px solid #4f4f4f;
+        }
+    </style>
+</head>
+<body style="background-image: url('@Url.Content("~/images/fundo.png")'); background-size: cover; margin: 0;">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark box-shadow">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo.png" class="img-fluid" width="50px" />
+                    <span style="font-family: sans-serif; font-size: 18px; font-weight: bold">Larica's <span style="color: #F13B43">Burger</span></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbar" class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse p-2">
+                    @await Component.InvokeAsync("CarrinhoCompraResumo")
+                    @await Component.InvokeAsync("CategoriaMenu")
+                    <form class="navbar-form navbar-right me-3" asp-controller="Lanche" asp-action="Search" method="get">
+                        <div class="form-group d-flex justify-content-center flex-row">
+                            <input id="pesquisaInput" type="text" class="me-2 p-2" placeholder="Procurar produto" name="searchString" @ViewData["searchString"] />
+                            <button class="btn btn-danger me-3" type="submit">Procurar</button>
+                        </div>
+                    </form>
+                    <div class="d-flex">
+                        <i class="fa-solid fa-user text-light p-1 me-2"></i>
+                        <span class="me-4"><a asp-controller="Account" asp-action="Login" class="text-light text-decoration-none">Fazer Login</a></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-xxl pb-5" id="fundo">
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

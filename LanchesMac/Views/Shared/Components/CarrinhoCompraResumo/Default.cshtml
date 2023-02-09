@@ -1,0 +1,21 @@
+﻿@model CarrinhoCompraViewModel
+
+<style>
+    a i {
+        transition: all 0.3s linear;
+    }
+
+    a:hover i {
+        transform: scale(1.2);
+    }
+</style>
+
+@if (Model.CarrinhoCompra.CarrinhoCompraItems.Count > 0)
+{
+    <a class="ms-3" style="text-decoration: none;" asp-controller="CarrinhoCompra" asp-action="Index">
+        <span><i id="icon-cart" class="fa-sharp fa-solid fa-cart-shopping text-light"></i></span>
+        <span style="color:white; text-decoration: none;">
+            @Model.CarrinhoCompra.CarrinhoCompraItems.Count()
+        </span>
+    </a>
+}
