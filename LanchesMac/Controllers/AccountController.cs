@@ -1,6 +1,7 @@
 ﻿using LanchesMac.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
 
 namespace LanchesMac.Controllers
 {
@@ -56,17 +57,28 @@ namespace LanchesMac.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(LoginViewModel register)
+        public async Task<IActionResult> Register(RegisterViewModel register)
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = register.UserName };
+                var user = new IdentityUser();
+
+                if (register.Password == register.ConfirmPassword)
+                {
+                    user = new IdentityUser { UserName = register.UserName };
+                }
+                else
+                {
+                    ViewBag.ConfirmPasswordError = "As senhas informadas não coincidem.";
+                    return View(register);
+                }
+
                 var result = await _userManager.CreateAsync(user, register.Password);
 
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    //await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Login", "Account");
                 }
                 else
                 {
@@ -75,6 +87,15 @@ namespace LanchesMac.Controllers
                 }
             }
             return View(register);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            HttpContext.Session.Clear();
+            HttpContext.User = null;
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
 
     }
