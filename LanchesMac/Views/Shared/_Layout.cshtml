@@ -24,8 +24,9 @@
 
         #fundo {
             background:;
-            background-color: rgba(33, 37, 41, 0.6);
+            background-color: #0e0e0e90;
             height: 100%;
+            border-radius: 8px;
         }
 
         #footer-top {
@@ -33,7 +34,7 @@
         }
     </style>
 </head>
-<body style="background-image: url('@Url.Content("~/images/fundo.png")'); background-size: cover; margin: 0;">
+<body style="background-image: url('@Url.Content("~/images/background.png")'); background-size: cover; margin: 0;">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark box-shadow">
             <div class="container">
@@ -57,12 +58,18 @@
                     <div class="d-flex">
                         @Html.Partial("_LoginPartial")
                     </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="d-flex me-3">
+                            <a asp-area="Admin" asp-controller="Admin" asp-action="Index" class="text-decoration-none text-light">Área administrativa</a>
+                        </div>
+                    }
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container-xxl pb-5" id="fundo">
+    <div class="container-xxl pb-1 mt-3" id="fundo">
         <main>
             @RenderBody()
         </main>

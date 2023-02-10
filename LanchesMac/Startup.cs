@@ -2,6 +2,7 @@
 using LanchesMac.Models;
 using LanchesMac.Repositories;
 using LanchesMac.Repositories.Interfaces;
+using LanchesMac.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,8 +28,8 @@ public class Startup
         services.Configure<IdentityOptions>(options =>
         {
             options.Password.RequireDigit = true;
-            options.Password.RequireLowercase= true;
-            options.Password.RequireUppercase= false;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireUppercase = false;
             options.Password.RequiredLength = 6;
             options.Password.RequireNonAlphanumeric = false;
         });
@@ -37,6 +38,16 @@ public class Startup
         services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         services.AddTransient<IPedidoRepository, PedidoRepository>();
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddScoped<ISeedUserRoleInitial, SeedUserRoleInitial>();
+
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy("Admin", politica =>
+            {
+                politica.RequireRole("Admin");
+            });
+        });
+
         services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
 
         services.AddControllersWithViews();
@@ -46,7 +57,7 @@ public class Startup
 
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ISeedUserRoleInitial seedUserRoleInitial)
     {
         if (env.IsDevelopment())
         {
@@ -62,6 +73,9 @@ public class Startup
         app.UseStaticFiles();
         app.UseRouting();
 
+        seedUserRoleInitial.SeedRoles();
+        seedUserRoleInitial.SeedUsers();
+
         app.UseSession();
 
         app.UseAuthorization();
@@ -73,6 +87,12 @@ public class Startup
                 name: "categoriaFiltro",
                 pattern: "Lanche/{action}/{categoria?}",
                 defaults: new { Controller = "Lanche", action = "List" });
+
+
+            endpoints.MapControllerRoute(
+              name: "areas",
+              pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}"
+            );
 
             endpoints.MapControllerRoute(
                 name: "default",
