@@ -1,11 +1,13 @@
 ﻿using LanchesMac.Models;
 using LanchesMac.Repositories.Interfaces;
 using LanchesMac.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
 
 namespace LanchesMac.Controllers
 {
+    [Authorize]
     public class LancheController : Controller
     {
         private readonly ILancheRepository _lancheRepository;
@@ -14,6 +16,7 @@ namespace LanchesMac.Controllers
             _lancheRepository = lancheRepository;
         }
 
+        [AllowAnonymous]
         public IActionResult List(string categoria)
         {
             IEnumerable<Lanche> lanches;
@@ -42,12 +45,14 @@ namespace LanchesMac.Controllers
             return View(lanchesListViewModel);
         }
 
+        [AllowAnonymous]
         public IActionResult Details(int lancheId)
         {
             var lanches = _lancheRepository.Lanches.FirstOrDefault(x => x.LancheId == lancheId);
             return View(lanches);
         }
 
+        [AllowAnonymous]
         public ViewResult Search(string searchString)
         {
             IEnumerable<Lanche> lanches;

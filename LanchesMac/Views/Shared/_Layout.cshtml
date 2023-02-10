@@ -55,8 +55,7 @@
                         </div>
                     </form>
                     <div class="d-flex">
-                        <i class="fa-solid fa-user text-light p-1 me-2"></i>
-                        <span class="me-4"><a asp-controller="Account" asp-action="Login" class="text-light text-decoration-none">Fazer Login</a></span>
+                        @Html.Partial("_LoginPartial")
                     </div>
                 </div>
             </div>

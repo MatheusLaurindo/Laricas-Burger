@@ -1,32 +1,48 @@
-﻿@model LoginViewModel
+﻿@model RegisterViewModel
 
 @{
-    Layout = "/Views/Shared/_LayoutLogin.cshtml";
+    Layout = "/Views/Shared/_LayoutRegister.cshtml";
 }
 
 <div class="container">
     <section class="vh-100">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="d-flex justify-content-center">
+                <div class="col-md-7">
+                    <h1 class="text-warning display-1">Seja Bem-vindo!</h1>
+                    <h4 class="text-light display-6">Preencha o formulário ao lado para fazer seu <span class="text-warning">cadastro</span>!</h4>
+                </div>
+                <div class="col-md-5">
                     <div class="card" style="border-radius: 1rem; width: 500px;">
                         <div class="col-md-12 col-lg-12 d-flex align-items-center justify-content-center">
                             <div class="card-body p-4 p-lg-5 text-black">
 
                                 <form asp-controller="Account" asp-action="Register" method="post">
 
-                                    <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Crie sua conta</h3>
+                                    <h2 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Crie sua conta</h2>
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example17">Usuário</label>
-                                        <input type="text" class="form-control shadow-none" asp-for="UserName" />
+                                        <input type="text" class="form-control shadow-none mb-2" asp-for="UserName" />
                                         <span asp-validation-for="UserName" class="text-danger"></span>
                                     </div>
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label">Senha</label>
-                                        <input type="password" class="form-control shadow-none" asp-for="Password" />
+                                        <input type="password" class="form-control shadow-none mb-2" asp-for="Password" />
                                         <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label">Confirmar Senha</label>
+                                        <input type="password" class="form-control shadow-none mb-2" asp-for="ConfirmPassword" />
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                        @if (ViewBag.ConfirmPasswordError != null)
+                                        {
+                                            <div class="alert alert-danger" role="alert">
+                                                <p>@ViewBag.ConfirmPasswordError</p>
+                                            </div>
+                                        }
                                     </div>
 
                                     @if (ViewBag.RegisterError != null)
@@ -37,7 +53,7 @@
                                     }
 
                                     <div class="pt-1 mb-4">
-                                        <button class="btn btn-dark btn-lg w-100" type="submit">Registrar</button>
+                                        <button class="btn btn-danger btn-lg w-100" type="submit">Registrar</button>
                                     </div>
 
                                 </form>
