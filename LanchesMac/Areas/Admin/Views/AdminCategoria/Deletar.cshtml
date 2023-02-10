@@ -1,0 +1,15 @@
+﻿@model Categoria
+
+<div class="container">
+    <form asp-controller="AdminCategoria" asp-action="Deletar" method="post">
+        <input type="hidden" asp-for="@Model.CategoriaId" value="@Model.CategoriaId" />
+        <div class="d-flex justify-content-between mt-3">
+            <h2 class="mt-3">Deletar Categoria</h2>
+        </div>
+        <h4>Tem certeza que deseja deletar o vendedor: @Model.CategoriaNome?</h4>
+        <div class="mt-5">
+            <button class="btn btn-danger" type="submit">Deletar</button>
+            <a asp-action="Index" asp-controller="AdminCategoria" class="ms-3">Voltar</a>
+        </div>
+    </form>
+</div>

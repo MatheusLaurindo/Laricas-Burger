@@ -1,0 +1,19 @@
+﻿@model Categoria
+
+<div class="container">
+    <div class="d-flex justify-content-between mt-3">
+        <h2 class="mt-3">Editar Categoria</h2>
+    </div>
+    <form asp-controller="AdminCategoria" asp-action="Editar" method="post">
+        <div class="mb-3 col-md-6">
+            <label class="form-label">Nome</label>
+            <input asp-for="CategoriaNome" type="text" class="form-control" value="@Model.CategoriaNome">
+        </div>
+        <div class="mb-3 col-md-6">
+            <label class="form-label">Descrição</label>
+            <input asp-for="Descricao" type="text" class="form-control" value="@Model.Descricao">
+        </div>
+        <input id="idCategoria" type="hidden" asp-for="@Model.CategoriaId" value="@Model.CategoriaId" />
+        <button type="submit" class="btn btn-success">Editar</button>
+    </form>
+</div>
