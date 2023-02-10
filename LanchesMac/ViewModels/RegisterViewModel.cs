@@ -8,6 +8,11 @@ namespace LanchesMac.ViewModels
         [Display(Name = "Usuário")]
         public string UserName { get; set; }
 
+        [Required(ErrorMessage = "Informe o Email")]
+        [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
         [Required(ErrorMessage = "Informe a senha")]
         [DataType(DataType.Password)]
         [Display(Name = "Senha")]
